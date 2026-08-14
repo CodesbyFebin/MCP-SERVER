@@ -1,8 +1,15 @@
-import { readFile } from 'node:fs/promises'; import path from 'node:path';
-const dir=process.argv.includes('--dir')?process.argv[process.argv.indexOf('--dir')+1]:'dist'; const xml=await readFile(path.join(dir,'sitemap.xml'),'utf8');
-const urls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]); const errors=[];
-if(urls.some(u=>u.includes('/mcp-server-directory')))errors.push('redirect source /mcp-server-directory is present');
-if(urls.some(u=>!u.startsWith('https://www.mcpserver.in')))errors.push('non-canonical hostname present');
-if(new Set(urls).size!==urls.length)errors.push('duplicate URL present');
-for(const u of urls){const p=new URL(u).pathname;const f=p==='/'?path.join(dir,'index.html'):path.join(dir,p.slice(1)+'.html');try{const h=await readFile(f,'utf8');const c=h.match(/<link rel="canonical" href="([^"]+)"/i)?.[1];if(c!==u)errors.push(`${p}: canonical mismatch (${c})`)}catch{errors.push(`${p}: generated file missing`)}}
-if(errors.length){errors.forEach(e=>console.error('[FAIL]',e));process.exit(1)}console.log(`Sitemap integrity passed for ${urls.length} canonical URLs`);
+import { sitemapPaths, paths, html, canonical } from './verify-lib.mjs';
+const sitemap=sitemapPaths();
+const expected=[...new Set(paths)];
+const errors=[];
+if(sitemap.includes('/mcp-server-directory')) errors.push('redirect source is present');
+if(new Set(sitemap).size!==sitemap.length) errors.push('duplicate URL present');
+for(const path of sitemap){
+  if(!expected.includes(path)) errors.push(`${path}: not an indexable route`);
+  const c=canonical(html(path));
+  const expectedCanonical=path==='/'?'https://www.mcpserver.in/':`https://www.mcpserver.in${path}`;
+  if(c!==expectedCanonical) errors.push(`${path}: canonical mismatch ${c}`);
+}
+for(const path of expected) if(!sitemap.includes(path)) errors.push(`${path}: missing from sitemap`);
+if(errors.length) throw new Error(errors.join('\n'));
+console.log(`verify-sitemap-integrity: ${sitemap.length} canonical URLs valid`);
