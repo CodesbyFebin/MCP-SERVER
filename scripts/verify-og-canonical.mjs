@@ -1,5 +1,9 @@
-import { readdir, readFile } from 'node:fs/promises'; import path from 'node:path';
-const dir=process.argv.includes('--dir')?process.argv[process.argv.indexOf('--dir')+1]:'dist';
-async function walk(d){const out=[];for(const ent of await readdir(d,{withFileTypes:true})){const p=path.join(d,ent.name);ent.isDirectory()?out.push(...await walk(p)):out.push(p)}return out}
-let failed=0;for(const file of (await walk(dir)).filter(f=>f.endsWith('.html')&&!f.endsWith('404.html'))){const h=await readFile(file,'utf8');const c=h.match(/<link rel="canonical" href="([^"]+)"/i)?.[1];const o=h.match(/<meta property="og:url" content="([^"]+)"/i)?.[1];if(!c||!o||c!==o){console.error(`[FAIL] ${file}: canonical=${c} og:url=${o}`);failed++}}
-if(failed)process.exit(1);console.log('canonical === og:url for every generated page');
+import { paths, html, canonical, ogUrl } from './verify-lib.mjs';
+for (const path of paths){
+  const markup=html(path);
+  const c=canonical(markup), o=ogUrl(markup);
+  if(!c||!o) throw new Error(`Missing canonical or og:url: ${path}`);
+  if(c!==o) throw new Error(`canonical != og:url: ${path}`);
+  if(!c.startsWith('https://www.mcpserver.in/')) throw new Error(`Wrong canonical origin: ${path} -> ${c}`);
+}
+console.log(`verify-og-canonical: ${paths.length} routes valid`);
