@@ -1,0 +1,17 @@
+{
+  "name": "mcpserver-in-v2-port",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tar -xzf build-src.tgz && node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "verify:seo": "node scripts/verify-og-canonical.mjs --dir dist",
+    "verify:sitemap": "node scripts/verify-sitemap-integrity.mjs --dir dist",
+    "verify:preview": "node scripts/verify-preview-noindex.mjs --dir dist",
+    "verify:all": "npm test && npm run build && npm run verify:seo && npm run verify:sitemap && npm run verify:preview"
+  }
+}
