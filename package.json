@@ -1,17 +1,24 @@
 {
-  "name": "mcpserver-in-v2-port",
-  "version": "1.0.0",
+  "name": "mcpserver-in-production",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
-    "build": "tar -xzf build-src.tgz && node scripts/build.mjs",
+    "typecheck": "node --check lib/site.js && node --check api/render.js && node --check src/data/servers.mjs && node --check scripts/build.mjs",
     "test": "node --test tests/*.test.mjs",
-    "verify:seo": "node scripts/verify-og-canonical.mjs --dir dist",
-    "verify:sitemap": "node scripts/verify-sitemap-integrity.mjs --dir dist",
-    "verify:preview": "node scripts/verify-preview-noindex.mjs --dir dist",
-    "verify:all": "npm test && npm run build && npm run verify:seo && npm run verify:sitemap && npm run verify:preview"
+    "build": "node scripts/build.mjs",
+    "verify:build": "node scripts/verify-build.mjs",
+    "verify:routes": "node scripts/verify-routes.mjs",
+    "verify:seo": "node scripts/verify-og-canonical.mjs",
+    "verify:sitemap": "node scripts/verify-sitemap-integrity.mjs",
+    "verify:preview": "node scripts/verify-preview-noindex.mjs",
+    "verify:jsonld": "node scripts/verify-jsonld.mjs",
+    "verify:links": "node scripts/verify-internal-links.mjs",
+    "verify:claims": "node scripts/verify-no-placeholder-claims.mjs",
+    "verify:all": "npm run verify:build && npm run verify:routes && npm run verify:seo && npm run verify:sitemap && npm run verify:preview && npm run verify:jsonld && npm run verify:links && npm run verify:claims",
+    "production:gate": "npm run typecheck && npm test && npm run build && npm run verify:all"
   }
 }
