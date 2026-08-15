@@ -131,7 +131,11 @@ export const servers = [
 
 export const slugify = value => String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-export const serverRecords = servers.map(server => ({ ...server, slug: slugify(server.name) }));
+// Apply the Evidence Ledger defaults so every record carries publicationStatus
+// and evidence[] even before a provided dataset promotes some to `published`.
+export const serverRecords = servers
+  .map(withLedgerDefaults)
+  .map(server => ({ ...server, slug: slugify(server.name) }));
 export const categoryRecords = [...new Set(serverRecords.map(server => server.category))]
   .sort((a, b) => a.localeCompare(b))
   .map(name => ({ name, slug: slugify(name), count: serverRecords.filter(server => server.category === name).length }));
@@ -148,5 +152,7 @@ export const publicServerRecord = server => ({
   latestVerifiedVersion: server.latestVerifiedVersion,
   capabilities: server.capabilities,
   verificationStatus: server.verificationStatus,
+  publicationStatus: server.publicationStatus,
+  evidence: server.evidence,
   updatedDate: server.updatedDate
 });

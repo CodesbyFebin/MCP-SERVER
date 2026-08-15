@@ -6,9 +6,17 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "mcpserver.in" }],
+      "destination": "https://www.mcpserver.in/$1",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
       "source": "/mcp-server-directory",
       "destination": "/directory",
-      "permanent": true
+      "permanent": true,
+      "statusCode": 301
     }
   ],
   "rewrites": [

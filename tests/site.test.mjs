@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { ORIGIN, REDIRECTS, metadata, renderHtml, renderSitemap, robotsFor, allIndexablePaths, renderRegistryJson } from '../lib/site.js';
+import { isServerIndexable } from '../src/lib/indexability.mjs';
+import { serverRecords } from '../src/data/servers.mjs';
 
 test('canonical and og:url always match across indexable routes',()=>{
   for(const path of allIndexablePaths()){
@@ -37,11 +39,16 @@ test('sitemap exactly matches the unique indexable route set',()=>{
   assert.ok(urls.every(u=>u.startsWith(ORIGIN)));
 });
 
-test('machine-readable registry contains derived count and required fields',()=>{
+test('machine-readable registry exposes only indexable (published) records',()=>{
   const payload=JSON.parse(renderRegistryJson());
   assert.equal(payload.count,payload.servers.length);
-  assert.ok(payload.servers.length>0);
+  assert.equal(payload.totalTracked,serverRecords.length);
   for(const server of payload.servers){
-    for(const key of ['slug','canonicalName','description','category','sourceUrl','latestVerifiedVersion','capabilities','verificationStatus','updatedDate']) assert.ok(key in server,`${server.slug}: ${key}`);
+    for(const key of ['slug','canonicalName','description','category','sourceUrl','latestVerifiedVersion','capabilities','verificationStatus','publicationStatus','evidence','updatedDate']) assert.ok(key in server,`${server.slug}: ${key}`);
+    const full=serverRecords.find(s=>s.slug===server.slug);
+    assert.ok(full && isServerIndexable(full),`${server.slug} in feed but not indexable`);
   }
+  // Every needs-evidence record must be excluded from the public feed.
+  const publishedSlugs=new Set(payload.servers.map(s=>s.slug));
+  for(const s of serverRecords){ if(!isServerIndexable(s)) assert.ok(!publishedSlugs.has(s.slug),`${s.slug} should be excluded`); }
 });
