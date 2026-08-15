@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm run build",
+  "buildCommand": "npm run production:gate",
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
@@ -10,6 +10,24 @@
       "destination": "/directory",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    { "source": "/robots.txt", "destination": "/api/render?path=/robots.txt" },
+    { "source": "/sitemap.xml", "destination": "/api/render?path=/sitemap.xml" },
+    { "source": "/llms.txt", "destination": "/api/render?path=/llms.txt" },
+    { "source": "/llms-full.txt", "destination": "/api/render?path=/llms-full.txt" },
+    { "source": "/mcp-registry.json", "destination": "/api/render?path=/mcp-registry.json" },
+    { "source": "/api/servers.json", "destination": "/api/render?path=/api/servers.json" },
+    { "source": "/servers/:slug", "destination": "/api/render?path=/servers/:slug" },
+    { "source": "/categories/:slug", "destination": "/api/render?path=/categories/:slug" },
+    { "source": "/pillars/:slug", "destination": "/api/render?path=/pillars/:slug" },
+    { "source": "/compare/:slug", "destination": "/api/render?path=/compare/:slug" },
+    { "source": "/topics/:slug", "destination": "/api/render?path=/topics/:slug" },
+    { "source": "/glossary/:slug", "destination": "/api/render?path=/glossary/:slug" },
+    { "source": "/tools/:slug", "destination": "/api/render?path=/tools/:slug" },
+    { "source": "/research/:slug", "destination": "/api/render?path=/research/:slug" },
+    { "source": "/", "destination": "/api/render?path=/" },
+    { "source": "/:slug", "destination": "/api/render?path=/:slug" }
   ],
   "headers": [
     {
