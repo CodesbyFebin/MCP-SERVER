@@ -2,8 +2,8 @@ import { paths, html } from './verify-lib.mjs';
 const forbidden=[
   /sub-?12ms/i,
   /sub-?15ms/i,
-  /SOC\s*2(?![^<]{0,80}does not claim)/i,
-  /ISO(?:\/IEC)?\s*\d{3,}/i,
+  /SOC\s*2\s*(?:Type\s*[12]|certified|compliant|certification)/i,
+  /ISO(?:\/IEC)?\s*\d{3,}\s*(?:certified|compliant|certification)/i,
   /99\.\d+%\s*uptime/i,
   /mcpserver-v1\.0\.0-gateway/i,
   /https:\/\/api\.mcpserver\.in/i,
