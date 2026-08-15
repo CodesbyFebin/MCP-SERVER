@@ -18,7 +18,10 @@
     "verify:jsonld": "node scripts/verify-jsonld.mjs",
     "verify:links": "node scripts/verify-internal-links.mjs",
     "verify:claims": "node scripts/verify-no-placeholder-claims.mjs",
-    "verify:all": "npm run verify:build && npm run verify:routes && npm run verify:seo && npm run verify:sitemap && npm run verify:preview && npm run verify:jsonld && npm run verify:links && npm run verify:claims",
-    "production:gate": "npm run typecheck && npm test && npm run build && npm run verify:all"
+    "verify:redirects": "node scripts/verify-redirects.mjs",
+    "build:redirects": "node scripts/build-redirects.mjs",
+    "extract:old-urls": "node scripts/extract-old-urls.mjs",
+    "verify:all": "npm run verify:build && npm run verify:routes && npm run verify:seo && npm run verify:sitemap && npm run verify:preview && npm run verify:jsonld && npm run verify:links && npm run verify:claims && npm run verify:redirects",
+    "production:gate": "npm run typecheck && npm test && npm run build:redirects && npm run build && npm run verify:all"
   }
 }

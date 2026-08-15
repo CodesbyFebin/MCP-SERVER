@@ -1,10 +1,26 @@
-// Evidence-backed seed snapshot from the Official MCP Registry.
-// Source: https://registry.modelcontextprotocol.io/v0.1/servers
-// Snapshot date: 2026-08-15. Only fields present in the registry response are copied.
-// Categories are MCPserver.in editorial taxonomy derived from the record description.
+// Evidence Ledger v2 data layer.
+//
+// The records below are the live seed snapshot from the Official MCP Registry.
+// To migrate to a provided dataset (e.g. a normalized export placed at
+// src/data/SAFE_DEEP_REPORT.json), replace `servers` with the normalized array
+// and ensure every record carries: slug, canonicalName, publicationStatus,
+// evidence[], and verificationStatus. The rest of the site is data-driven and
+// will recompute all counts, badge text, sitemap, and feeds from this array.
+//
+// No counts are hardcoded anywhere — they are derived in lib/indexability.mjs.
 
 export const REGISTRY_SOURCE = 'https://registry.modelcontextprotocol.io/v0.1/servers';
 export const SNAPSHOT_DATE = '2026-08-15';
+
+// Default Evidence Ledger fields applied to every seed record. A record is only
+// promoted to `published` when a real dataset supplies publicationStatus +
+// evidence[]. Seed records start as `needs-evidence` with no evidence, so they
+// are rendered for editors but excluded from the sitemap and public feeds.
+const withLedgerDefaults = (server) => ({
+  publicationStatus: 'needs-evidence',
+  evidence: [],
+  ...server
+});
 
 export const servers = [
   {
@@ -115,7 +131,11 @@ export const servers = [
 
 export const slugify = value => String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-export const serverRecords = servers.map(server => ({ ...server, slug: slugify(server.name) }));
+// Apply the Evidence Ledger defaults so every record carries publicationStatus
+// and evidence[] even before a provided dataset promotes some to `published`.
+export const serverRecords = servers
+  .map(withLedgerDefaults)
+  .map(server => ({ ...server, slug: slugify(server.name) }));
 export const categoryRecords = [...new Set(serverRecords.map(server => server.category))]
   .sort((a, b) => a.localeCompare(b))
   .map(name => ({ name, slug: slugify(name), count: serverRecords.filter(server => server.category === name).length }));
@@ -132,5 +152,7 @@ export const publicServerRecord = server => ({
   latestVerifiedVersion: server.latestVerifiedVersion,
   capabilities: server.capabilities,
   verificationStatus: server.verificationStatus,
+  publicationStatus: server.publicationStatus,
+  evidence: server.evidence,
   updatedDate: server.updatedDate
 });
