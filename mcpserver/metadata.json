@@ -1,0 +1,12 @@
+{
+  "name": "codeMicro",
+  "description": "The MCP Server Directory and Developer Platform - Discover, integrate, and deploy Model Context Protocol servers.",
+  "version": "0.1.0",
+  "capabilities": [
+    "server-directory",
+    "documentation",
+    "playground",
+    "pricing",
+    "developer-portal"
+  ]
+}
