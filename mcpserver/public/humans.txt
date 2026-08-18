@@ -1,0 +1,19 @@
+/* codeMicro Team */
+
+## Team
+- Engineering: codeMicro Team
+- Location: Bengaluru, Karnataka, India
+
+## Technologies
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- Recharts
+
+## Contact
+- Email: hello@codemicro.dev
+- GitHub: https://github.com/codemicro
+
+Last updated: 2026-08-18

@@ -1,7 +1,7 @@
 import { SITE_URL, SITE_NAME } from './constants';
 
 export interface JsonLdBase {
-  '@context': string;
+  '@context'?: string;
   '@type': string;
   '@id'?: string;
 }
@@ -19,6 +19,11 @@ export interface WebSiteSchema extends JsonLdBase {
   name: string;
   url: string;
   description: string;
+  potentialAction?: {
+    '@type': 'SearchAction';
+    target: string;
+    'query-input': string;
+  };
 }
 
 export interface BreadcrumbListSchema extends JsonLdBase {
@@ -50,6 +55,36 @@ export interface SoftwareApplicationSchema extends JsonLdBase {
   applicationCategory: string;
   operatingSystem: string;
   softwareVersion: string;
+  offers?: {
+    '@type': 'Offer';
+    price: string;
+    priceCurrency: string;
+    availability: string;
+  };
+}
+
+export interface TechArticleSchema extends JsonLdBase {
+  '@type': 'TechArticle';
+  headline: string;
+  description: string;
+  author: {
+    '@type': 'Organization';
+    name: string;
+    url: string;
+  };
+  datePublished: string;
+  dateModified: string;
+}
+
+export interface HowToSchema extends JsonLdBase {
+  '@type': 'HowTo';
+  name: string;
+  description: string;
+  step: {
+    '@type': 'HowToStep';
+    name: string;
+    text: string;
+  }[];
 }
 
 export function buildOrganizationSchema(overrides?: Partial<OrganizationSchema>): OrganizationSchema {
@@ -59,6 +94,8 @@ export function buildOrganizationSchema(overrides?: Partial<OrganizationSchema>)
     '@id': `${SITE_URL}/#organization`,
     name: SITE_NAME,
     url: SITE_URL,
+    logo: `${SITE_URL}/logo.png`,
+    sameAs: ['https://github.com/codemicro', 'https://twitter.com/codemicro'],
     ...overrides,
   };
 }
@@ -71,6 +108,11 @@ export function buildWebSiteSchema(overrides?: Partial<WebSiteSchema>): WebSiteS
     name: SITE_NAME,
     url: SITE_URL,
     description: 'The MCP Server Directory and Developer Platform',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${SITE_URL}/directory?q={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
     ...overrides,
   };
 }
@@ -105,6 +147,7 @@ export function buildSoftwareApplicationSchema(server: {
   name: string;
   description: string;
   version: string;
+  category: string;
 }): SoftwareApplicationSchema {
   return {
     '@context': 'https://schema.org',
@@ -112,9 +155,54 @@ export function buildSoftwareApplicationSchema(server: {
     '@id': `${SITE_URL}/servers/${server.name.toLowerCase()}/#application`,
     name: server.name,
     description: server.description,
-    applicationCategory: 'DeveloperApplication',
+    applicationCategory: categoryToAppCategory(server.category),
     operatingSystem: 'Cross-platform',
     softwareVersion: server.version,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+    },
+  };
+}
+
+export function buildTechArticleSchema(overrides: {
+  headline: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+}): TechArticleSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: overrides.headline,
+    description: overrides.description,
+    author: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    datePublished: overrides.datePublished,
+    dateModified: overrides.dateModified,
+  };
+}
+
+export function buildHowToSchema(overrides: {
+  name: string;
+  description: string;
+  steps: { name: string; text: string }[];
+}): HowToSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: overrides.name,
+    description: overrides.description,
+    step: overrides.steps.map((step) => ({
+      '@type': 'HowToStep',
+      name: step.name,
+      text: step.text,
+    })),
   };
 }
 
@@ -131,4 +219,31 @@ export function buildFAQPageSchema(faqs: { question: string; answer: string }[])
       },
     })),
   };
+}
+
+export function buildFullGraph(pageSchema?: JsonLdBase): JsonLdBase[] {
+  const graph: JsonLdBase[] = [
+    buildOrganizationSchema(),
+    buildWebSiteSchema(),
+  ];
+
+  if (pageSchema) {
+    graph.push(pageSchema);
+  }
+
+  return graph;
+}
+
+function categoryToAppCategory(category: string): string {
+  const map: Record<string, string> = {
+    'ai': 'AIApplication',
+    'databases': 'DatabaseApplication',
+    'devtools': 'DeveloperApplication',
+    'communication': 'CommunicationApplication',
+    'storage': 'StorageApplication',
+    'security': 'SecurityApplication',
+    'monitoring': 'MonitoringApplication',
+    'productivity': 'ProductivityApplication',
+  };
+  return map[category] || 'DeveloperApplication';
 }

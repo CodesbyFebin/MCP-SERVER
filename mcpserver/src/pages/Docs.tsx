@@ -1,8 +1,38 @@
 import { Link } from 'react-router-dom';
+import { SchemaJsonLd } from '../components/SchemaJsonLd';
+import { RelatedPages } from '../components/RelatedPages';
+import { buildTechArticleSchema, buildHowToSchema } from '../lib/schema';
+import { SITE_URL } from '../lib/constants';
 
 export function Docs() {
+  const docSchema = buildTechArticleSchema({
+    headline: 'MCP Documentation',
+    description: 'Copy-pasteable setup commands and code examples for integrating MCP servers with Claude Desktop, Cursor, and other clients.',
+    datePublished: '2026-08-01',
+    dateModified: '2026-08-18',
+  });
+
+  const howToSchema = buildHowToSchema({
+    name: 'How to set up an MCP server',
+    description: 'Add an MCP server to your client configuration using JSON.',
+    steps: [
+      { name: 'Open client config', text: 'Open your MCP client configuration file (Claude Desktop, Cursor, or Continue).' },
+      { name: 'Add server entry', text: 'Add a new entry under mcpServers with the server name, command, and args.' },
+      { name: 'Restart client', text: 'Restart your client to load the new server.' },
+    ],
+  });
+
+  const relatedLinks = [
+    { title: 'Server Directory', href: '/directory', description: 'Browse all verified MCP servers with setup commands.' },
+    { title: 'Interactive Playground', href: '/tools', description: 'Test JSON-RPC payloads in your browser.' },
+    { title: 'Pricing Plans', href: '/pricing', description: 'Free, Pro, and Enterprise plans with INR/USD pricing.' },
+    { title: 'Protocol Comparisons', href: '/compare', description: 'MCP vs REST, GraphQL, and gRPC feature matrices.' },
+  ];
+
   return (
     <div className="min-h-screen bg-brand-bg">
+      <SchemaJsonLd schema={docSchema} />
+      <SchemaJsonLd schema={howToSchema} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-4xl font-bold text-white mb-4">Documentation</h1>
         <p className="text-xl text-gray-400 mb-8">
@@ -88,6 +118,7 @@ def greet(name: str) -> str:
             </div>
           </section>
         </div>
+        <RelatedPages title="Related Resources" links={relatedLinks} />
         <div className="mt-12">
           <Link
             to="/"

@@ -1,16 +1,23 @@
 import { useState } from 'react';
 import { PricingTable } from '../components/PricingTable';
-import { PLANS, CURRENCIES } from '../data/pricing';
+import { SchemaJsonLd } from '../components/SchemaJsonLd';
+import { buildWebPageSchema } from '../lib/schema';
 import { SITE_CONFIG } from '../data/site';
+import { PLANS } from '../data/pricing';
 
 export function Pricing() {
   const [yearly, setYearly] = useState(false);
   const [currency, setCurrency] = useState<'USD' | 'INR'>('USD');
 
-  const rate = CURRENCIES.find(c => c.code === currency)!.rate;
+  const pageSchema = buildWebPageSchema({
+    id: `${SITE_CONFIG.url}/pricing`,
+    title: 'Pricing Plans',
+    description: 'Flexible plans with Indian payment integrations. Choose between Free, Pro, and Enterprise tiers with USD and INR pricing.',
+  });
 
   return (
     <div className="min-h-screen bg-brand-bg">
+      <SchemaJsonLd schema={pageSchema} />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-white mb-4">Pricing Plans</h1>
@@ -20,19 +27,26 @@ export function Pricing() {
         </div>
         <div className="flex justify-center gap-4 mb-8">
           <div className="inline-flex rounded-lg bg-white/5 p-1">
-            {CURRENCIES.map((curr) => (
-              <button
-                key={curr.code}
-                onClick={() => setCurrency(curr.code as 'USD' | 'INR')}
-                className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
-                  currency === curr.code
-                    ? 'bg-brand-cyan text-brand-bg'
-                    : 'text-gray-300 hover:text-white'
-                }`}
-              >
-                {curr.code} ({curr.symbol})
-              </button>
-            ))}
+            <button
+              onClick={() => setCurrency('USD')}
+              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                currency === 'USD'
+                  ? 'bg-brand-cyan text-brand-bg'
+                  : 'text-gray-300 hover:text-white'
+              }`}
+            >
+              USD ($)
+            </button>
+            <button
+              onClick={() => setCurrency('INR')}
+              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                currency === 'INR'
+                  ? 'bg-brand-cyan text-brand-bg'
+                  : 'text-gray-300 hover:text-white'
+              }`}
+            >
+              INR (₹)
+            </button>
           </div>
           <div className="inline-flex rounded-lg bg-white/5 p-1">
             <button

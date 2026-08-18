@@ -1,0 +1,35 @@
+# codeMicro - Full LLM Summary
+
+## Platform Description
+codeMicro is the Model Context Protocol (MCP) Server Directory and Developer Platform based in Bengaluru, India. It provides a searchable directory of MCP server integrations, copy-pasteable documentation, and an interactive JSON-RPC playground.
+
+## Server Directory
+The directory includes verified MCP servers across categories:
+- AI & Machine Learning
+- Databases
+- Developer Tools
+- Communication
+- Storage & Files
+- Security & Auth
+- Monitoring & Observability
+- Productivity
+
+Each server listing includes capabilities, verification status, repository links, and setup commands.
+
+## Documentation
+- Quick start guides for Claude Desktop, Cursor, and other clients
+- TypeScript SDK examples
+- Python SDK examples
+- Protocol comparisons (MCP vs REST, GraphQL, gRPC)
+
+## Pricing
+- Free tier for individual developers
+- Pro tier for professional developers
+- Enterprise tier for organizations
+
+## Contact
+- Email: hello@codemicro.dev
+- Address: HSR Layout, Bengaluru, Karnataka 560102, India
+- GitHub: https://github.com/codemicro/mcpserver
+
+Generated: 2026-08-18

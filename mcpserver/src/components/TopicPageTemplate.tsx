@@ -10,6 +10,7 @@ interface TopicPageTemplateProps {
   checklist: string[];
   relatedTopics: { id: string; title: string; slug: string; description?: string; difficulty?: 'beginner' | 'intermediate' | 'advanced' }[];
   children?: React.ReactNode;
+  lastUpdated?: string;
 }
 
 export function TopicPageTemplate({
@@ -19,6 +20,7 @@ export function TopicPageTemplate({
   checklist,
   relatedTopics,
   children,
+  lastUpdated = '2026-08-18',
 }: TopicPageTemplateProps) {
   return (
     <div className="min-h-screen bg-brand-bg">
@@ -26,7 +28,16 @@ export function TopicPageTemplate({
         <Breadcrumbs items={breadcrumbs} />
         <article>
           <h1 className="text-4xl font-bold text-white mb-4">{title}</h1>
-          <p className="text-xl text-gray-400 mb-8">{description}</p>
+          <div className="text-lg text-gray-300 max-w-3xl mb-6">
+            {description}
+          </div>
+          <div className="flex items-center gap-4 text-xs text-gray-500 mb-8">
+            <span>Last updated: {lastUpdated}</span>
+            <span>·</span>
+            <span>Author: codeMicro Team</span>
+            <span>·</span>
+            <span>Bengaluru, India</span>
+          </div>
           {children}
           <div className="mt-12">
             <h2 className="text-2xl font-bold text-white mb-6">Checklist</h2>

@@ -1,7 +1,11 @@
 import { useState, useMemo } from 'react';
 import { ServerCard } from '../components/ServerCard';
+import { SchemaJsonLd } from '../components/SchemaJsonLd';
+import { buildFAQPageSchema, buildWebPageSchema } from '../lib/schema';
 import { servers } from '../data/servers';
 import { CATEGORIES, CategoryId } from '../data/categories';
+import { SITE_CONFIG } from '../data/site';
+import { faqs } from '../data/faqs';
 
 export function DirectoryPage() {
   const [search, setSearch] = useState('');
@@ -17,13 +21,28 @@ export function DirectoryPage() {
     });
   }, [search, activeCategory]);
 
+  const quickAnswer = `The MCP Server Directory lists verified Model Context Protocol servers that enable AI assistants to connect to external tools and data sources. Browse ${servers.length}+ servers across databases, devtools, AI, storage, and more.`;
+
+  const pageSchema = buildWebPageSchema({
+    id: `${SITE_CONFIG.url}/directory`,
+    title: 'MCP Server Directory',
+    description: quickAnswer,
+  });
+
+  const faqSchema = buildFAQPageSchema(faqs);
+
   return (
     <div className="min-h-screen bg-brand-bg">
+      <SchemaJsonLd schema={pageSchema} />
+      <SchemaJsonLd schema={faqSchema} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-4">MCP Server Directory</h1>
-          <p className="text-gray-400 max-w-2xl">
-            Browse {servers.length}+ verified MCP servers. Filter by category or search for specific capabilities.
+          <div className="text-lg text-gray-300 max-w-3xl mb-4">
+            {quickAnswer}
+          </div>
+          <p className="text-sm text-gray-500">
+            Last updated: 2026-08-18 · {servers.length} servers indexed
           </p>
         </div>
         <div className="mb-8 space-y-4">

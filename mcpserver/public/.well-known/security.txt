@@ -1,0 +1,20 @@
+# codeMicro Security Policy
+
+## Contact
+- Security Email: security@codemicro.dev
+- PGP Key: https://www.codemicro.dev/pgp-key.asc
+
+## Preferred Languages
+English
+
+## Policy
+We take security seriously. If you discover a vulnerability, please report it responsibly.
+
+## Scope
+- https://www.codemicro.dev
+- All subdomains
+
+## Disclosure
+We follow coordinated disclosure. Please do not publicly disclose findings until we have addressed them.
+
+Last updated: 2026-08-18

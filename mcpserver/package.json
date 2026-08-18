@@ -7,7 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "verify": "npm run verify:robots && npm run verify:sitemap && npm run verify:ai && npm run verify:schema && npm run verify:claims",
+    "verify:robots": "node scripts/verify-robots.mjs",
+    "verify:sitemap": "node scripts/verify-sitemap.mjs",
+    "verify:ai": "node scripts/verify-ai-files.mjs",
+    "verify:schema": "node scripts/verify-schema.mjs",
+    "verify:claims": "node scripts/verify-claims.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

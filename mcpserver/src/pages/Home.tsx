@@ -1,15 +1,40 @@
 import { Link } from 'react-router-dom';
 import { Hero } from '../components/Hero';
 import { ServerCard } from '../components/ServerCard';
+import { RelatedPages } from '../components/RelatedPages';
+import { SchemaJsonLd } from '../components/SchemaJsonLd';
+import { buildFAQPageSchema, buildWebPageSchema } from '../lib/schema';
 import { servers } from '../data/servers';
 import { CATEGORIES } from '../data/categories';
 import { SITE_CONFIG } from '../data/site';
+import { faqs } from '../data/faqs';
 
 export function Home() {
   const featuredServers = servers.slice(0, 3);
 
+  const quickAnswer = `codeMicro is the Model Context Protocol (MCP) Server Directory and Developer Platform. It helps developers discover, integrate, and deploy MCP servers through a searchable directory, interactive documentation, and JSON-RPC playground.`;
+
+  const webPageSchema = buildWebPageSchema({
+    id: `${SITE_CONFIG.url}/`,
+    title: SITE_CONFIG.name,
+    description: quickAnswer,
+  });
+
+  const faqSchema = buildFAQPageSchema(faqs);
+
+  const relatedLinks = [
+    { title: 'Browse All Servers', href: '/directory', description: 'Explore 100+ verified MCP servers across all categories.' },
+    { title: 'Documentation', href: '/docs', description: 'Copy-pasteable setup commands and SDK examples.' },
+    { title: 'Pricing Plans', href: '/pricing', description: 'Free, Pro, and Enterprise tiers with INR/USD support.' },
+    { title: 'Security & Compliance', href: '/security', description: 'Infrastructure security, data protection, and vulnerability reporting.' },
+    { title: 'Interactive Playground', href: '/tools', description: 'Test JSON-RPC payloads directly in your browser.' },
+    { title: 'Protocol Comparisons', href: '/compare', description: 'MCP vs REST, GraphQL, and gRPC feature matrices.' },
+  ];
+
   return (
     <div className="min-h-screen bg-brand-bg">
+      <SchemaJsonLd schema={webPageSchema} />
+      <SchemaJsonLd schema={faqSchema} />
       <Hero
         title="The Model Context Protocol Directory"
         subtitle="Discover, integrate, and deploy MCP servers. Connect AI assistants to external tools and data sources with a standardized protocol."
@@ -79,6 +104,7 @@ export function Home() {
             </div>
           </div>
         </section>
+        <RelatedPages title="Explore More" links={relatedLinks} />
       </main>
     </div>
   );
