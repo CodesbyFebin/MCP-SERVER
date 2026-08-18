@@ -1,0 +1,6 @@
+# MCPserver.in Security Policy
+
+Contact: hello@mcp-server.in
+Policy: https://www.mcpserver.in/security
+
+Last updated: 2026-08-18

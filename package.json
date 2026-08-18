@@ -1,27 +1,44 @@
 {
-  "name": "mcpserver-in-production",
-  "version": "2.0.0",
+  "name": "mcp-server",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
-  "engines": {
-    "node": ">=20"
-  },
   "scripts": {
-    "typecheck": "node --check lib/site.js && node --check api/render.js && node --check src/data/servers.mjs && node --check scripts/build.mjs",
-    "test": "node --test tests/*.test.mjs",
-    "build": "node scripts/build.mjs",
-    "verify:build": "node scripts/verify-build.mjs",
-    "verify:routes": "node scripts/verify-routes.mjs",
-    "verify:seo": "node scripts/verify-og-canonical.mjs",
-    "verify:sitemap": "node scripts/verify-sitemap-integrity.mjs",
-    "verify:preview": "node scripts/verify-preview-noindex.mjs",
-    "verify:jsonld": "node scripts/verify-jsonld.mjs",
-    "verify:links": "node scripts/verify-internal-links.mjs",
-    "verify:claims": "node scripts/verify-no-placeholder-claims.mjs",
-    "verify:redirects": "node scripts/verify-redirects.mjs",
-    "build:redirects": "node scripts/build-redirects.mjs",
-    "extract:old-urls": "node scripts/extract-old-urls.mjs",
-    "verify:all": "npm run verify:build && npm run verify:routes && npm run verify:seo && npm run verify:sitemap && npm run verify:preview && npm run verify:jsonld && npm run verify:links && npm run verify:claims && npm run verify:redirects",
-    "production:gate": "npm run typecheck && npm test && npm run build:redirects && npm run build && npm run verify:all"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "verify:seo": "tsx scripts/verify-seo.ts",
+    "verify:claims": "tsx scripts/verify-claims.ts",
+    "verify:sitemap": "tsx scripts/verify-sitemap.ts",
+    "verify:links": "tsx scripts/verify-links.ts",
+    "verify:schema": "tsx scripts/verify-schema.ts",
+    "verify:robots": "tsx scripts/verify-robots.ts",
+    "verify:preview": "tsx scripts/verify-preview.ts",
+    "production:gate": "npm run typecheck && npm run test && npm run build && npm run verify:seo && npm run verify:claims && npm run verify:sitemap && npm run verify:links && npm run verify:schema && npm run verify:robots && npm run verify:preview"
+  },
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.15.0",
+    "eslint-config-next": "^15.0.0",
+    "jsdom": "^24.0.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
+    "tsx": "^4.19.2",
+    "typescript": "~5.6.2",
+    "vitest": "^2.1.8"
   }
 }
