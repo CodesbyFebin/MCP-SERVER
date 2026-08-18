@@ -34,7 +34,6 @@ const STATIC_ROUTES = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map(route => ({
     url: canonicalUrl(route.path),
-    lastModified: new Date('2026-08-18'),
     changeFrequency: route.changefreq,
     priority: route.priority,
   }));
@@ -49,24 +48,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
   const glossaryEntries: MetadataRoute.Sitemap = [
-    { path: '/glossary/mcp', lastmod: '2026-08-18' },
-    { path: '/glossary/json-rpc', lastmod: '2026-08-18' },
-    { path: '/glossary/tool', lastmod: '2026-08-18' },
-    { path: '/glossary/resource', lastmod: '2026-08-18' },
-    { path: '/glossary/prompt', lastmod: '2026-08-18' },
+    { path: '/glossary/mcp' },
+    { path: '/glossary/json-rpc' },
+    { path: '/glossary/tool' },
+    { path: '/glossary/resource' },
+    { path: '/glossary/prompt' },
   ].map(entry => ({
     url: canonicalUrl(entry.path),
-    lastModified: new Date(entry.lastmod),
     changeFrequency: 'monthly' as const,
     priority: 0.5,
   }));
 
   const blogEntries: MetadataRoute.Sitemap = [
-    { path: '/blog/evidence-first-indexing', lastmod: '2026-08-18' },
-    { path: '/blog/canonical-architecture', lastmod: '2026-08-18' },
+    { path: '/blog/evidence-first-indexing' },
+    { path: '/blog/canonical-architecture' },
   ].map(entry => ({
     url: canonicalUrl(entry.path),
-    lastModified: new Date(entry.lastmod),
     changeFrequency: 'monthly' as const,
     priority: 0.5,
   }));

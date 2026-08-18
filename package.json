@@ -10,6 +10,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "verify:preflight": "node scripts/production-gate.mjs",
+    "verify:postbuild": "npm run verify:seo && npm run verify:claims && npm run verify:sitemap && npm run verify:links && npm run verify:schema && npm run verify:robots && npm run verify:preview",
     "verify:seo": "tsx scripts/verify-seo.ts",
     "verify:claims": "tsx scripts/verify-claims.ts",
     "verify:sitemap": "tsx scripts/verify-sitemap.ts",
@@ -17,10 +19,10 @@
     "verify:schema": "tsx scripts/verify-schema.ts",
     "verify:robots": "tsx scripts/verify-robots.ts",
     "verify:preview": "tsx scripts/verify-preview.ts",
-    "production:gate": "npm run typecheck && npm run test && npm run build && npm run verify:seo && npm run verify:claims && npm run verify:sitemap && npm run verify:links && npm run verify:schema && npm run verify:robots && npm run verify:preview"
+    "production:gate": "npm run verify:preflight && npm run typecheck && npm test && npm run build && npm run verify:postbuild"
   },
   "dependencies": {
-    "next": "^15.0.0",
+    "next": "^16.2.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "zod": "^3.23.8"
@@ -33,7 +35,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.15.0",
-    "eslint-config-next": "^15.0.0",
+    "eslint-config-next": "^16.2.10",
     "jsdom": "^24.0.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.16",
