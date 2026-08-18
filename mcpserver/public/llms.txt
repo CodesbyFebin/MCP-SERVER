@@ -1,0 +1,23 @@
+# codeMicro
+
+codeMicro is the Model Context Protocol (MCP) Server Directory and Developer Platform.
+
+## Overview
+codeMicro helps developers discover, integrate, and deploy MCP servers. The platform provides a searchable directory, interactive documentation, and a JSON-RPC playground.
+
+## Key Sections
+- Directory: https://www.codemicro.dev/directory
+- Documentation: https://www.codemicro.dev/docs
+- Pricing: https://www.codemicro.dev/pricing
+- Playground: https://www.codemicro.dev/tools
+- Security: https://www.codemicro.dev/security
+
+## Protocols
+- Model Context Protocol (MCP)
+- JSON-RPC 2.0
+
+## Contact
+- Email: hello@codemicro.dev
+- GitHub: https://github.com/codemicro/mcpserver
+
+Generated: 2026-08-18
