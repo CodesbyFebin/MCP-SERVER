@@ -7,53 +7,297 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "mcpserver.in" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "mcpserver.in"
+        }
+      ],
       "destination": "https://www.mcpserver.in/$1",
-      "permanent": true,
-      "statusCode": 301
+      "permanent": true
     },
     {
       "source": "/mcp-server-directory",
       "destination": "/directory",
       "permanent": true,
       "statusCode": 301
+    },
+    {
+      "source": "/blog/axis-bank-mcp-india",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/tamil-maharaja-mcp-tn",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/mcp-security-risk-assessment",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/p99",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/mcp-server-for-ifttt",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/mcp-server-kubernetes-deployment",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/mcp-server-debates-hot-topics",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/mcp-server-meetups-local-events",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/glossary/mcp-canary-deploy-166",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/glossary/mcp-stream-processing-159",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/glossary/mcp-a-b-test-165",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/glossary/mcp-format-validator-120",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/compliance/rbi-compliance",
+      "destination": "/docs",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/mcp-server-community-join-the-conversation",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/mcp-books-essentials",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/glossary/mcp-search-engine-136",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/mcp-server-for-salesforce",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/mcp-transport-methods",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/glossary/mcp-batch-processing-160",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/glossary/mcp-ml-model-serving-156",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/glossary/mcp-range-validator-121",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/learn/dpdp-compliance-guide",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/mcp-development-best-practices",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/glossary/mcp-graph-database-153",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/glossary/ros",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/glossary/mcp-decision-engine-111",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/mcp-server-for-slack",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/mcp-video-courses-ranked",
+      "destination": "/blog",
+      "permanent": true,
+      "statusCode": 301
+    },
+    {
+      "source": "/glossary/mcp-container-registry-127",
+      "destination": "/learn",
+      "permanent": true,
+      "statusCode": 301
     }
   ],
   "rewrites": [
-    { "source": "/robots.txt", "destination": "/api/render?path=/robots.txt" },
-    { "source": "/sitemap.xml", "destination": "/api/render?path=/sitemap.xml" },
-    { "source": "/llms.txt", "destination": "/api/render?path=/llms.txt" },
-    { "source": "/llms-full.txt", "destination": "/api/render?path=/llms-full.txt" },
-    { "source": "/mcp-registry.json", "destination": "/api/render?path=/mcp-registry.json" },
-    { "source": "/api/servers.json", "destination": "/api/render?path=/api/servers.json" },
-    { "source": "/servers/:slug", "destination": "/api/render?path=/servers/:slug" },
-    { "source": "/categories/:slug", "destination": "/api/render?path=/categories/:slug" },
-    { "source": "/pillars/:slug", "destination": "/api/render?path=/pillars/:slug" },
-    { "source": "/compare/:slug", "destination": "/api/render?path=/compare/:slug" },
-    { "source": "/topics/:slug", "destination": "/api/render?path=/topics/:slug" },
-    { "source": "/glossary/:slug", "destination": "/api/render?path=/glossary/:slug" },
-    { "source": "/tools/:slug", "destination": "/api/render?path=/tools/:slug" },
-    { "source": "/research/:slug", "destination": "/api/render?path=/research/:slug" },
-    { "source": "/", "destination": "/api/render?path=/" },
-    { "source": "/:slug", "destination": "/api/render?path=/:slug" }
+    {
+      "source": "/robots.txt",
+      "destination": "/api/render?path=/robots.txt"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/render?path=/sitemap.xml"
+    },
+    {
+      "source": "/llms.txt",
+      "destination": "/api/render?path=/llms.txt"
+    },
+    {
+      "source": "/llms-full.txt",
+      "destination": "/api/render?path=/llms-full.txt"
+    },
+    {
+      "source": "/mcp-registry.json",
+      "destination": "/api/render?path=/mcp-registry.json"
+    },
+    {
+      "source": "/api/servers.json",
+      "destination": "/api/render?path=/api/servers.json"
+    },
+    {
+      "source": "/servers/:slug",
+      "destination": "/api/render?path=/servers/:slug"
+    },
+    {
+      "source": "/categories/:slug",
+      "destination": "/api/render?path=/categories/:slug"
+    },
+    {
+      "source": "/pillars/:slug",
+      "destination": "/api/render?path=/pillars/:slug"
+    },
+    {
+      "source": "/compare/:slug",
+      "destination": "/api/render?path=/compare/:slug"
+    },
+    {
+      "source": "/topics/:slug",
+      "destination": "/api/render?path=/topics/:slug"
+    },
+    {
+      "source": "/glossary/:slug",
+      "destination": "/api/render?path=/glossary/:slug"
+    },
+    {
+      "source": "/tools/:slug",
+      "destination": "/api/render?path=/tools/:slug"
+    },
+    {
+      "source": "/research/:slug",
+      "destination": "/api/render?path=/research/:slug"
+    },
+    {
+      "source": "/",
+      "destination": "/api/render?path=/"
+    },
+    {
+      "source": "/:slug",
+      "destination": "/api/render?path=/:slug"
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "missing": [
-        { "type": "host", "value": "www.mcpserver.in" },
-        { "type": "host", "value": "mcpserver.in" }
+        {
+          "type": "host",
+          "value": "www.mcpserver.in"
+        },
+        {
+          "type": "host",
+          "value": "mcpserver.in"
+        }
       ],
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, follow" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
       ]
     }
   ]

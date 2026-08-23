@@ -1,0 +1,13 @@
+export function allIndexablePaths(){ 
+  const paths = [
+    ...STATIC.map(r=>r.path),
+    ...serverRecords.filter(isServerIndexable).map(s=>'/servers/'+s.slug),
+    ...categoryRecords.map(c=>'/categories/'+c.slug),
+    ...pillars.map(x=>'/pillars/'+x.slug),
+    ...topics.map(x=>'/topics/'+x.slug),
+    ...glossary.map(x=>'/glossary/'+x.slug),
+    ...comparisons.map(x=>'/compare/'+x.slug)
+  ];
+  // Filter out redirect sources
+  return paths.filter(path => !isRedirectSource(path));
+}

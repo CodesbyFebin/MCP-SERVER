@@ -46,39 +46,6 @@ const comparisons = [
 ];
 
 export const REDIRECTS = new Map([['/mcp-server-directory','/directory']]);
-
-function isRedirectSource(path) {
-  const p = path.replace(/\/+$/, "");
-  const basePaths = [
-    "/directory",
-    "/integrations",
-    "/clients",
-    "/docs",
-    "/tools/mcp-playground",
-    "/what-is-mcp",
-    "/learn",
-    "/security",
-    "/state-of-mcp",
-    "/blog",
-    "/pricing",
-    "/about",
-    "/contact",
-    "/research/mcp-directories",
-    "/status",
-    "/hosting",
-    "/editorial-policy",
-    "/verification-methodology",
-    "/privacy",
-    "/terms",
-    "/mcp-server-directory"
-  ];
-  return basePaths.some(base => {
-    if (p === base) return false;
-    const baseWithSlash = base + "/";
-    return p.startsWith(baseWithSlash) && p.length > baseWithSlash.length;
-  });
-}
-
 export const normalizePath = (v='/') => { v=String(v||'/').split('?')[0].split('#')[0]; if(!v.startsWith('/')) v='/'+v; v=v.replace(/\/{2,}/g,'/'); if(v.length>1) v=v.replace(/\/$/,''); return v||'/'; };
 export const normalizeHost = (h='') => String(h).trim().toLowerCase().split(':')[0];
 export const canonicalFor = p => normalizePath(p)==='/' ? ORIGIN+'/' : ORIGIN+normalizePath(p);
@@ -132,7 +99,7 @@ function directoryBody(){ const published=serverRecords.filter(isServerIndexable
 function genericBody(r){
   if(r.kind==='directory') return directoryBody();
   if(r.kind==='server') return serverBody(r);
-  if(r.kind==='category'){ const matches=serverRecords.filter(s=>s.category===r.item.name); const indexableMatches=matches.filter(isServerIndexable); return `<section class="hero"><p class="kicker">Dataset taxonomy</p><h1>${esc(r.title)}</h1><p class="lead">${esc(r.description)} This category contains ${matches.length} record${matches.length===1?'':'s'} in the ${SNAPSHOT_DATE} snapshot.</p></section><section class="section">${cards(indexableMatches)}</section>${relatedHtml(r.path)}`; }
+  if(r.kind==='category'){ const matches=serverRecords.filter(s=>s.category===r.item.name); return `<section class="hero"><p class="kicker">Dataset taxonomy</p><h1>${esc(r.title)}</h1><p class="lead">${esc(r.description)} This category contains ${matches.length} record${matches.length===1?'':'s'} in the ${SNAPSHOT_DATE} snapshot.</p></section><section class="section">${cards(matches)}</section>${relatedHtml(r.path)}`; }
   if(r.kind==='pricing'||r.kind==='hosting') return `<section class="hero"><p class="kicker">Availability</p><h1>${esc(r.title)}</h1><p class="lead">${esc(r.description)}</p></section><section class="section"><div class="notice"><strong>No purchasable hosted plan is represented as live here.</strong> Pricing, SLA, regional infrastructure, payment methods, and quotas will be published only after they are implemented and evidenced.</div></section>${relatedHtml(r.path)}`;
   if(r.kind==='status') return `<section class="hero"><p class="kicker">Operational transparency</p><h1>${esc(r.title)}</h1><p class="lead">${esc(r.description)}</p></section><section class="section"><div class="notice"><strong>This is not a live telemetry dashboard.</strong> No generated latency, uptime, request volume, cluster health, or regional performance values are displayed as measurements.</div></section>${relatedHtml(r.path)}`;
   if(r.kind==='security') return `<section class="hero"><p class="kicker">Security boundaries</p><h1>${esc(r.title)}</h1><p class="lead">${esc(r.description)}</p></section><section class="section"><div class="grid"><article class="card"><h2>Implemented on this site</h2><p>Canonical host controls, preview noindex headers, content-type protection, referrer policy, and evidence labeling.</p></article><article class="card"><h2>Recommended for MCP operators</h2><p>Least privilege, scoped credentials, sandboxing, audit trails, human approval for high-impact tools, and secret isolation.</p></article><article class="card"><h2>Not claimed</h2><p>MCPserver.in does not claim SOC 2, ISO certification, a service SLA, uptime percentage, or DPDP legal compliance without published evidence.</p></article></div></section>${relatedHtml(r.path)}`;
@@ -150,19 +117,15 @@ export function renderHtml(path,host=''){
 export function renderRegistryJson(){ const published=serverRecords.filter(isServerIndexable); return JSON.stringify({ source:REGISTRY_SOURCE, snapshotDate:SNAPSHOT_DATE, count:published.length, totalTracked:serverRecords.length, servers:published.map(publicServerRecord) },null,2); }
 export function renderServersJson(){ return JSON.stringify(serverRecords.filter(isServerIndexable).map(publicServerRecord),null,2); }
 
-export function allIndexablePaths(){ 
-  const paths = [
-    ...STATIC.map(r=>r.path),
-    ...serverRecords.filter(isServerIndexable).map(s=>'/servers/'+s.slug),
-    ...categoryRecords.map(c=>'/categories/'+c.slug),
-    ...pillars.map(x=>'/pillars/'+x.slug),
-    ...topics.map(x=>'/topics/'+x.slug),
-    ...glossary.map(x=>'/glossary/'+x.slug),
-    ...comparisons.map(x=>'/compare/'+x.slug)
-  ];
-  // Filter out redirect sources
-  return paths.filter(path => !isRedirectSource(path)); 
-}
+export function allIndexablePaths(){ return [
+  ...STATIC.map(r=>r.path),
+  ...serverRecords.filter(isServerIndexable).map(s=>'/servers/'+s.slug),
+  ...categoryRecords.map(c=>'/categories/'+c.slug),
+  ...pillars.map(x=>'/pillars/'+x.slug),
+  ...topics.map(x=>'/topics/'+x.slug),
+  ...glossary.map(x=>'/glossary/'+x.slug),
+  ...comparisons.map(x=>'/compare/'+x.slug)
+]; }
 
 export function renderSitemap(){ const urls=[...new Set(allIndexablePaths())]; return `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(p=>`<url><loc>${esc(canonicalFor(p))}</loc><lastmod>${SNAPSHOT_DATE}</lastmod></url>`).join('')}</urlset>`; }
 export function renderRobots(host=''){ if(normalizeHost(host)!==CANONICAL_HOST) return `User-agent: *\nDisallow: /\n`; return `User-agent: *\nAllow: /\nSitemap: ${ORIGIN}/sitemap.xml\n`; }

@@ -1,0 +1,32 @@
+function isRedirectSource(path) {
+  const p = path.replace(/\/+$/, "");
+  const basePaths = [
+    "/directory",
+    "/integrations",
+    "/clients",
+    "/docs",
+    "/tools/mcp-playground",
+    "/what-is-mcp",
+    "/learn",
+    "/security",
+    "/state-of-mcp",
+    "/blog",
+    "/pricing",
+    "/about",
+    "/contact",
+    "/research/mcp-directories",
+    "/status",
+    "/hosting",
+    "/editorial-policy",
+    "/verification-methodology",
+    "/privacy",
+    "/terms",
+    "/servers",
+    "/mcp-server-directory"
+  ];
+  return basePaths.some(base => {
+    if (p === base) return false;
+    const baseWithSlash = base + "/";
+    return p.startsWith(baseWithSlash) && p.length > baseWithSlash.length;
+  });
+}
