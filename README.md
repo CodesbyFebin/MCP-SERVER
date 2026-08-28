@@ -49,3 +49,4 @@ The site is emitted to `dist/` and deployed by Vercel. Canonicals always target 
 ## Registry ingestion
 
 See [`MCPServer-Ingestion-README.md`](./MCPServer-Ingestion-README.md).
+Last updated: 2026-08-23 22:56:38 UTC
