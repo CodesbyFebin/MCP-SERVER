@@ -1,0 +1,148 @@
+{
+  "canonical_entities": [
+    {
+      "canonical_candidate": "/glossary/mcp-soc-2",
+      "observed_variants": [
+        "/glossary/mcp-soc-2/",
+        "https://www.mcpserver.in/glossary/mcp-soc-2",
+        "https://www.mcpserver.in/glossary/mcp-soc-2/"
+      ],
+      "coverage_status": "indexed",
+      "search_visibility": "appeared",
+      "current_status": "indexed",
+      "current_canonical": "/glossary/mcp-soc-2",
+      "migration_priority": "LOW",
+      "migration_action": "REVIEW",
+      "destination": null,
+      "evidence": [
+        {
+          "source": "historical_url_inventory",
+          "source_type": "URL inventory",
+          "status": "verified",
+          "supports": ["canonical_candidate"],
+          "last_checked": "2024-12-31"
+        }
+      ]
+    },
+    {
+      "canonical_candidate": "/glossary/mcp-iso-27001",
+      "observed_variants": [
+        "/glossary/mcp-iso-27001/",
+        "https://www.mcpserver.in/glossary/mcp-iso-27001",
+        "https://www.mcpserver.in/glossary/mcp-iso-27001/"
+      ],
+      "coverage_status": "indexed",
+      "search_visibility": "appeared",
+      "current_status": "indexed",
+      "current_canonical": "/glossary/mcp-iso-27001",
+      "migration_priority": "LOW",
+      "migration_action": "REVIEW",
+      "destination": null,
+      "evidence": [
+        {
+          "source": "historical_url_inventory",
+          "source_type": "URL inventory",
+          "status": "verified",
+          "supports": ["canonical_candidate"],
+          "last_checked": "2024-12-31"
+        }
+      ]
+    },
+    {
+      "canonical_candidate": "/directory/iot",
+      "observed_variants": [
+        "/directory/iot/",
+        "https://www.mcpserver.in/directory/iot",
+        "https://www.mcpserver.in/directory/iot/"
+      ],
+      "coverage_status": "discovered-not-indexed",
+      "search_visibility": "not appeared",
+      "current_status": "pending",
+      "current_canonical": null,
+      "migration_priority": "MEDIUM",
+      "migration_action": "REVIEW",
+      "destination": null,
+      "evidence": [
+        {
+          "source": "historical_url_inventory",
+          "source_type": "URL inventory",
+          "status": "verified",
+          "supports": ["needs_equivalent_category"],
+          "last_checked": "2024-12-31"
+        }
+      ]
+    },
+    {
+      "canonical_candidate": "/directory/databases",
+      "observed_variants": [
+        "/directory/databases/",
+        "https://www.mcpserver.in/directory/databases",
+        "https://www.mcpserver.in/directory/databases/"
+      ],
+      "coverage_status": "discovered-not-indexed",
+      "search_visibility": "not appeared",
+      "current_status": "pending",
+      "current_canonical": null,
+      "migration_priority": "MEDIUM",
+      "migration_action": "REVIEW",
+      "destination": null,
+      "evidence": [
+        {
+          "source": "historical_url_inventory",
+          "source_type": "URL inventory",
+          "status": "verified",
+          "supports": ["needs_equivalent_category"],
+          "last_checked": "2024-12-31"
+        }
+      ]
+    },
+    {
+      "canonical_candidate": "/directory/devops",
+      "observed_variants": [
+        "/directory/devops/",
+        "https://www.mcpserver.in/directory/devops",
+        "https://www.mcpserver.in/directory/devops/"
+      ],
+      "coverage_status": "discovered-not-indexed",
+      "search_visibility": "not appeared",
+      "current_status": "pending",
+      "current_canonical": null,
+      "migration_priority": "MEDIUM",
+      "migration_action": "REVIEW",
+      "destination": null,
+      "evidence": [
+        {
+          "source": "historical_url_inventory",
+          "source_type": "URL inventory",
+          "status": "verified",
+          "supports": ["needs_equivalent_category"],
+          "last_checked": "2024-12-31"
+        }
+      ]
+    },
+    {
+      "canonical_candidate": "/directory/monitoring",
+      "observed_variants": [
+        "/directory/monitoring/",
+        "https://www.mcpserver.in/directory/monitoring",
+        "https://www.mcpserver.in/directory/monitoring/"
+      ],
+      "coverage_status": "discovered-not-indexed",
+      "search_visibility": "not appeared",
+      "current_status": "pending",
+      "current_canonical": null,
+      "migration_priority": "MEDIUM",
+      "migration_action": "REVIEW",
+      "destination": null,
+      "evidence": [
+        {
+          "source": "historical_url_inventory",
+          "source_type": "URL inventory",
+          "status": "verified",
+          "supports": ["needs_equivalent_category"],
+          "last_checked": "2024-12-31"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "legacy_redirects": [
+    {
+      "historical_path": "/glossary/mcp-soc-2",
+      "recommended_action": "REVIEW",
+      "reason": "G7: Set to EVIDENCE_REVIEW. No generic redirect. Only assign 301 if exact equivalent canonical proven, else REBUILD or 410.",
+      "confidence": "LOW"
+    },
+    {
+      "historical_path": "/glossary/mcp-iso-27001",
+      "recommended_action": "REVIEW",
+      "reason": "G7: Set to EVIDENCE_REVIEW. No generic redirect. Only assign 301 if exact equivalent canonical proven, else REBUILD or 410.",
+      "confidence": "LOW"
+    },
+    {
+      "historical_path": "/directory/iot",
+      "recommended_action": "REVIEW",
+      "reason": "G8: Initial action REVIEW. Map one-hop to equivalent category if exists, otherwise preserve/rebuild rather than mass-redirect to /servers/.",
+      "confidence": "LOW"
+    },
+    {
+      "historical_path": "/directory/databases",
+      "recommended_action": "REVIEW",
+      "reason": "G8: Initial action REVIEW. Map one-hop to equivalent category if exists, otherwise preserve/rebuild rather than mass-redirect to /servers/.",
+      "confidence": "LOW"
+    },
+    {
+      "historical_path": "/directory/devops",
+      "recommended_action": "REVIEW",
+      "reason": "G8: Initial action REVIEW. Map one-hop to equivalent category if exists, otherwise preserve/rebuild rather than mass-redirect to /servers/.",
+      "confidence": "LOW"
+    },
+    {
+      "historical_path": "/directory/monitoring",
+      "recommended_action": "REVIEW",
+      "reason": "G8: Initial action REVIEW. Map one-hop to equivalent category if exists, otherwise preserve/rebuild rather than mass-redirect to /servers/.",
+      "confidence": "LOW"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "historical_urls": [
+    {
+      "url": "https://www.mcpserver.in/glossary/mcp-soc-2",
+      "first_seen": "2024-01-01",
+      "last_seen": "2024-12-31",
+      "coverage_status": "indexed",
+      "search_appearance": "appeared"
+    },
+    {
+      "url": "https://www.mcpserver.in/glossary/mcp-iso-27001",
+      "first_seen": "2024-01-01",
+      "last_seen": "2024-12-31",
+      "coverage_status": "indexed",
+      "search_appearance": "appeared"
+    },
+    {
+      "url": "https://www.mcpserver.in/directory/iot",
+      "first_seen": "2024-01-01",
+      "last_seen": "2024-12-31",
+      "coverage_status": "discovered-not-indexed",
+      "search_appearance": "not appeared"
+    },
+    {
+      "url": "https://www.mcpserver.in/directory/databases",
+      "first_seen": "2024-01-01",
+      "last_seen": "2024-12-31",
+      "coverage_status": "discovered-not-indexed",
+      "search_appearance": "not appeared"
+    },
+    {
+      "url": "https://www.mcpserver.in/directory/devops",
+      "first_seen": "2024-01-01",
+      "last_seen": "2024-12-31",
+      "coverage_status": "discovered-not-indexed",
+      "search_appearance": "not appeared"
+    },
+    {
+      "url": "https://www.mcpserver.in/directory/monitoring",
+      "first_seen": "2024-01-01",
+      "last_seen": "2024-12-31",
+      "coverage_status": "discovered-not-indexed",
+      "search_appearance": "not appeared"
+    }
+  ]
+}

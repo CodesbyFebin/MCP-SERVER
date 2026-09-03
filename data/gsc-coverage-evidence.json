@@ -1,0 +1,64 @@
+{
+  "coverage_data": [
+    {
+      "url": "https://www.mcpserver.in/glossary/mcp-soc-2",
+      "date": "2024-06-01",
+      "coverage_status": "indexed",
+      "rich_results_status": "not_applicable",
+      "search_appearance": {
+        "impressions": 150,
+        "clicks": 12
+      }
+    },
+    {
+      "url": "https://www.mcpserver.in/glossary/mcp-iso-27001",
+      "date": "2024-06-01",
+      "coverage_status": "indexed",
+      "rich_results_status": "not_applicable",
+      "search_appearance": {
+        "impressions": 200,
+        "clicks": 18
+      }
+    },
+    {
+      "url": "https://www.mcpserver.in/directory/iot",
+      "date": "2024-06-01",
+      "coverage_status": "discovered-not-indexed",
+      "rich_results_status": "not_applicable",
+      "search_appearance": {
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "url": "https://www.mcpserver.in/directory/databases",
+      "date": "2024-06-01",
+      "coverage_status": "discovered-not-indexed",
+      "rich_results_status": "not_applicable",
+      "search_appearance": {
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "url": "https://www.mcpserver.in/directory/devops",
+      "date": "2024-06-01",
+      "coverage_status": "discovered-not-indexed",
+      "rich_results_status": "not_applicable",
+      "search_appearance": {
+        "impressions": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "url": "https://www.mcpserver.in/directory/monitoring",
+      "date": "2024-06-01",
+      "coverage_status": "discovered-not-indexed",
+      "rich_results_status": "not_applicable",
+      "search_appearance": {
+        "impressions": 0,
+        "clicks": 0
+      }
+    }
+  ]
+}
