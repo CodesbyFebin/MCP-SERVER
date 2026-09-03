@@ -45,8 +45,20 @@ const NEW_SERVER_SLUGS = new Set([
 const NEW_COMPARE_SLUGS = new Set(['mcp-vs-rest']);
 const NEW_TOOL_SLUGS = new Set(['mcp-playground']);
 const NEW_RESEARCH_SLUGS = new Set(['mcp-directories']);
+// G7: Removed generic mapping for mcp-soc-2 and mcp-iso-27001.
+// They are EVIDENCE_REVIEW per migration ledger — not generic /glossary/ redirects.
 const NEW_GLOSSARY_SLUGS = new Set(['mcp-server', 'mcp-client', 'mcp-host']);
 const NEW_TOPIC_SLUGS = new Set(['streamable-http', 'stdio-transport']);
+
+// G7/G8: Paths under migration-ledger REVIEW — do NOT issue generic redirects.
+const REVIEW_PATHS = new Set([
+  '/glossary/mcp-soc-2',
+  '/glossary/mcp-iso-27001',
+  '/directory/iot',
+  '/directory/databases',
+  '/directory/devops',
+  '/directory/monitoring'
+]);
 
 export function normalizePath(path = '/') {
   const clean = String(path).split(/[?#]/, 1)[0] || '/';
@@ -63,6 +75,10 @@ export function mapOldToNew(rawPath) {
   const path = normalizePath(rawPath);
   if (path === '/') return null;                       // root handled by host canonical
   if (NEW_INDEX_ROUTES.has(path)) return null;         // already canonical
+
+  // G7/G8: Migration-ledger REVIEW paths must NOT receive generic redirects.
+  // They are EVIDENCE_REVIEW — awaiting explicit decision (301/REBUILD/410/none).
+  if (REVIEW_PATHS.has(path)) return null;             // skip — pending evidence review
 
   const segments = path.split('/').filter(Boolean);
   const top = '/' + (segments[0] || '');
