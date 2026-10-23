@@ -1,0 +1,8 @@
+{
+  "id": "ev_github-mcp-security",
+  "claim": "GitHub MCP has zero critical vulnerabilities in latest audit.",
+  "sourceUrl": "https://github.com/mcp-server/security",
+  "sourceType": "repo",
+  "snapshotSha256": "19e607a6e5cbe52f2092ed843153d4e45da479abd77043102db77be161f48b27",
+  "retrievedAt": "2023-10-24T12:00:00Z"
+}

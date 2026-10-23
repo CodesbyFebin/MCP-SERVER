@@ -22,6 +22,13 @@
     "build:redirects": "node scripts/build-redirects.mjs",
     "extract:old-urls": "node scripts/extract-old-urls.mjs",
     "verify:all": "npm run verify:build && npm run verify:routes && npm run verify:seo && npm run verify:sitemap && npm run verify:preview && npm run verify:jsonld && npm run verify:links && npm run verify:claims && npm run verify:redirects",
-    "production:gate": "npm run typecheck && npm test && npm run build:redirects && npm run build && npm run verify:all"
+    "production:gate": "npm run typecheck && npm test && npm run build:redirects && npm run build && npm run verify:all",
+    "lint:evidence": "npx tsx scripts/lint-evidence.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "zod": "^4.6.7"
   }
 }
