@@ -1,0 +1,46 @@
+{
+  "github-mcp": {
+    "slug": "github-mcp",
+    "name": "GitHub MCP",
+    "vendor": "Anthropic",
+    "kind": "mcp-server",
+    "capsule": "An MCP server that allows interaction with the GitHub API.",
+    "summary": "GitHub MCP server provides a standardized way to interface with GitHub's REST and GraphQL APIs through the Model Context Protocol. This enables AI models to fetch repository contents, manage pull requests, and perform other GitHub operations.",
+    "capabilities": [
+      {
+        "name": "read_repository",
+        "value": "supported",
+        "evidenceId": "ev_github-mcp-security"
+      }
+    ],
+    "securityAudit": {
+      "criticals": 0,
+      "warnings": 0,
+      "findings": [],
+      "lastAudit": "2023-10-24T12:00:00Z",
+      "auditor": "Internal"
+    },
+    "benchmarks": [],
+    "pricing": [],
+    "compliance": {
+      "dpdp": "unknown",
+      "dpdpNotes": "Requires manual review.",
+      "rbi": "unknown",
+      "rbiNotes": "Requires manual review.",
+      "itAct": "unknown",
+      "itActNotes": "Requires manual review.",
+      "dataLocalization": "unknown",
+      "localizationNotes": "Requires manual review.",
+      "airGapReady": "unknown",
+      "airGapNotes": "Requires manual review.",
+      "lastComplianceCheck": "2023-10-24T12:00:00Z"
+    },
+    "deployment": [],
+    "relations": {},
+    "mcpSupport": true,
+    "localSupport": false,
+    "lastVerified": "2023-10-24T12:00:00Z",
+    "verifiedBy": "CI Pipeline",
+    "status": "active"
+  }
+}

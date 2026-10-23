@@ -1,0 +1,72 @@
+[
+  {
+    "id": "dpdp-sec-5",
+    "category": "DPDP Act 2023",
+    "regulation": "Digital Personal Data Protection Act, 2023",
+    "section": "Section 5",
+    "requirement": "Personal data may be processed only for a lawful purpose for which the Data Principal has given consent.",
+    "applicableTo": ["mcp-server", "framework"],
+    "evidenceRequired": "Tool schema must not extract PII without explicit consent parameter, or must operate on anonymized data.",
+    "checkLogic": "Scan tool definitions for PII fields (email, phone, aadhaar). If present, verify 'consent' boolean parameter exists in schema."
+  },
+  {
+    "id": "dpdp-sec-16",
+    "category": "DPDP Act 2023",
+    "regulation": "Digital Personal Data Protection Act, 2023",
+    "section": "Section 16",
+    "requirement": "Restrictions on transfer of personal data outside India (as notified by Central Government).",
+    "applicableTo": ["mcp-server", "gateway"],
+    "evidenceRequired": "Documentation of data residency or explicit statement of cross-border data flow.",
+    "checkLogic": "If dataLocalization == 'cross-border', flag for DPDP Sec 16 review. Require evidence of government notification or anonymization."
+  },
+  {
+    "id": "rbi-2018-localization",
+    "category": "RBI Guidelines",
+    "regulation": "Reserve Bank of India Master Direction on Payment Data",
+    "section": "Para 4 (Data Localization)",
+    "requirement": "All data relating to payment systems operated by entities regulated by RBI shall be stored only in India.",
+    "applicableTo": ["mcp-server", "framework"],
+    "evidenceRequired": "Infrastructure deployment proof showing India-only regions (e.g., aws:ap-south-1) and no egress to foreign endpoints.",
+    "checkLogic": "If vendor is financial or tool accesses financial data, dataLocalization MUST be 'india-only'. Any 'cross-border' = non-compliant."
+  },
+  {
+    "id": "sebi-2023-cloud",
+    "category": "SEBI Guidelines",
+    "regulation": "SEBI Master Circular on Cloud Service Providers",
+    "section": "Para 5.1",
+    "requirement": "Critical securities market data must be stored in India. Primary and secondary data centers must be in India.",
+    "applicableTo": ["mcp-server", "gateway"],
+    "evidenceRequired": "Sovereign cloud certification or MeitY empanelment documentation.",
+    "checkLogic": "If applicableTo includes 'securities' or 'trading', sovereignCloud MUST be true and dataLocalization MUST be 'india-only'."
+  },
+  {
+    "id": "it-act-2000-intermediary",
+    "category": "IT Act 2000",
+    "regulation": "Information Technology Act, 2000 & CERT-In Directions 2022",
+    "section": "Section 79 & CERT-In Direction 6",
+    "requirement": "Intermediaries must preserve logs for 180 days and report cyber incidents to CERT-In within 6 hours.",
+    "applicableTo": ["mcp-server", "gateway"],
+    "evidenceRequired": "Logging architecture diagram showing 180-day retention in Indian jurisdiction.",
+    "checkLogic": "Verify deployment config includes audit logging enabled and log storage region is 'in-india'."
+  },
+  {
+    "id": "meity-sovereign-cloud",
+    "category": "MeitY Guidelines",
+    "regulation": "MeitY Empanelment of Cloud Service Providers",
+    "section": "General Requirements",
+    "requirement": "Government data must be processed on MeitY-empaneled CSPs with data centers located exclusively in India.",
+    "applicableTo": ["mcp-server", "gateway"],
+    "evidenceRequired": "CSP name mapped to current MeitY empaneled list (e.g., AWS India, Azure India, Yotta, CtrlS).",
+    "checkLogic": "If sovereignCloud == true, verify vendor is on MeitY approved list. If false, airGapReady must be evaluated for govt use."
+  },
+  {
+    "id": "air-gap-defense",
+    "category": "Air-Gapped Requirements",
+    "regulation": "Defense / Banking / Healthcare Sector Norms",
+    "section": "N/A (Sectoral Best Practice)",
+    "requirement": "Zero external network egress. All dependencies and models must be available locally.",
+    "applicableTo": ["mcp-server", "framework"],
+    "evidenceRequired": "Network policy manifest showing deny-all egress, and local model/dependency caching proof.",
+    "checkLogic": "If airGapReady == true, verify no external API calls in code review and no dynamic imports."
+  }
+]
