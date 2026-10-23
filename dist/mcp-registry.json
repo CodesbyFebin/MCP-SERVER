@@ -1,0 +1,94 @@
+{
+  "source": "https://registry.modelcontextprotocol.io/v0.1/servers",
+  "snapshotDate": "2026-08-15",
+  "count": 3,
+  "totalTracked": 74,
+  "servers": [
+    {
+      "slug": "cline",
+      "canonicalName": "Cline",
+      "title": "Cline",
+      "description": "Open-Source Coding Agent",
+      "category": "Unknown",
+      "repositoryUrl": null,
+      "sourceUrl": null,
+      "websiteUrl": null,
+      "latestVerifiedVersion": "0.0.0",
+      "capabilities": [],
+      "verificationStatus": "official-registry",
+      "publicationStatus": "published",
+      "evidence": [
+        {
+          "source": "SAFE_DEEP_REPORT",
+          "description": "Evidence from SAFE_DEEP_REPORT",
+          "capturedAt": "2026-10-23T23:12:45.376Z"
+        },
+        {
+          "source": "SAFE_DEEP_REPORT",
+          "description": "Evidence from SAFE_DEEP_REPORT",
+          "capturedAt": "2026-10-23T23:12:45.376Z"
+        },
+        {
+          "source": "SAFE_DEEP_REPORT",
+          "description": "Evidence from SAFE_DEEP_REPORT",
+          "capturedAt": "2026-10-23T23:12:45.376Z"
+        }
+      ],
+      "updatedDate": "2026-08-15"
+    },
+    {
+      "slug": "cursor",
+      "canonicalName": "Cursor",
+      "title": "Cursor",
+      "description": "AI IDE Integration",
+      "category": "Unknown",
+      "repositoryUrl": null,
+      "sourceUrl": null,
+      "websiteUrl": null,
+      "latestVerifiedVersion": "0.0.0",
+      "capabilities": [],
+      "verificationStatus": "official-registry",
+      "publicationStatus": "published",
+      "evidence": [
+        {
+          "source": "SAFE_DEEP_REPORT",
+          "description": "Evidence from SAFE_DEEP_REPORT",
+          "capturedAt": "2026-10-23T23:12:45.376Z"
+        },
+        {
+          "source": "SAFE_DEEP_REPORT",
+          "description": "Evidence from SAFE_DEEP_REPORT",
+          "capturedAt": "2026-10-23T23:12:45.376Z"
+        }
+      ],
+      "updatedDate": "2026-08-15"
+    },
+    {
+      "slug": "sarvam-ai",
+      "canonicalName": "Sarvam AI",
+      "title": "Sarvam AI",
+      "description": "Indic LLM MCP Server",
+      "category": "Unknown",
+      "repositoryUrl": null,
+      "sourceUrl": null,
+      "websiteUrl": null,
+      "latestVerifiedVersion": "0.0.0",
+      "capabilities": [],
+      "verificationStatus": "official-registry",
+      "publicationStatus": "published",
+      "evidence": [
+        {
+          "source": "SAFE_DEEP_REPORT",
+          "description": "Evidence from SAFE_DEEP_REPORT",
+          "capturedAt": "2026-10-23T23:12:45.376Z"
+        },
+        {
+          "source": "SAFE_DEEP_REPORT",
+          "description": "Evidence from SAFE_DEEP_REPORT",
+          "capturedAt": "2026-10-23T23:12:45.376Z"
+        }
+      ],
+      "updatedDate": "2026-08-15"
+    }
+  ]
+}

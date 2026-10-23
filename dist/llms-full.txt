@@ -1,0 +1,15 @@
+# MCPserver.in
+Canonical: https://www.mcpserver.in/
+Registry source: https://registry.modelcontextprotocol.io/v0.1/servers
+Registry snapshot: 2026-08-15
+Published catalog records: 3
+
+## Key pages
+- /directory — registry-backed server directory
+- /verification-methodology — evidence rules
+- /security — security guidance and certification boundaries
+
+## Servers
+- /servers/cline — Cline 0.0.0
+- /servers/cursor — Cursor 0.0.0
+- /servers/sarvam-ai — Sarvam AI 0.0.0
